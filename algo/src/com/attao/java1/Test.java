@@ -12,5 +12,17 @@ public class Test {
         Game game = new Game();
         List<Poker> pokers = game.buyPoker();
         System.out.println(pokers);
+
+        //洗牌
+        System.out.println("洗牌:");
+        game.shuffle(pokers);
+        System.out.println(pokers);
+
+        //揭牌
+        List<List<Poker>> list = game.personGame(pokers);
+        System.out.println("揭牌");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("第" + (i+1) + "个人的牌：" + list.get(i));
+        }
     }
 }
