@@ -24,5 +24,11 @@ public class Test {
         for (int i = 0; i < list.size(); i++) {
             System.out.println("第" + (i+1) + "个人的牌：" + list.get(i));
         }
+        System.out.println("剩下的牌：");
+        System.out.println(pokers);
+
+//        String s = "hello";
+//        char c = s.charAt(1);
+//        System.out.println(c);
     }
 }
