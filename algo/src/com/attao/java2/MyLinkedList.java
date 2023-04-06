@@ -164,4 +164,16 @@ public class MyLinkedList {
         }
         System.out.println();
     }
+
+    public void clear(){
+        ListNode cur = head;
+        while(cur != null){
+            ListNode curNext = cur.next;
+            cur.prev = null;
+            cur.next = null;
+            cur = curNext;
+        }
+        head = null;
+        last = null;
+    }
 }
