@@ -37,6 +37,7 @@ public class MyStack {
         return elem[--usedSize];
     }
     public boolean isEmpty(){
+
         return usedSize == 0;
     }
 
