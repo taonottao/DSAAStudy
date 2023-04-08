@@ -45,6 +45,9 @@ public class MyQueue {
 
         int ret = head.val;
         head = head.next;
+        if(head == null){
+            last = null;
+        }
         usedSize--;
         return ret;
     }
