@@ -1,7 +1,6 @@
 package com.attao.java5;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @version 1.0
@@ -40,6 +39,23 @@ public class BinaryTreeDemo {
         E.right = H;
 //        this.root = A;
         return A;
+    }
+
+    /**
+     * 给一个字符串，根据前序遍历创建一颗二叉树，'#'代表空树
+     */ public static int i = 0;
+
+    public static TreeNode creatTree(String str){
+        TreeNode root = null;
+        if(str.charAt(i) != '#'){
+            root = new TreeNode(str.charAt(i));
+            i++;
+            root.left = creatTree(str);
+            root.right = creatTree(str);
+        }else {
+            i++;
+        }
+        return root;
     }
 
     //前序遍历 根  左子树  右子树
@@ -141,7 +157,7 @@ public class BinaryTreeDemo {
         return leftCount + rightCount;
     }
 
-    private int leafCount;
+    public int leafCount;
     public void getLeafNodeCount1(TreeNode root){
         if(root == null){
             return ;
@@ -150,8 +166,8 @@ public class BinaryTreeDemo {
             leafCount++;
         }
 
-        int leftCount = getLeafNodeCount(root.left);
-        int rightCount = getLeafNodeCount(root.right);
+        getLeafNodeCount(root.left);
+        getLeafNodeCount(root.right);
     }
 
     //获取第k层节点的个数
@@ -258,6 +274,237 @@ public class BinaryTreeDemo {
 
         return root;
     }
+
+
+    //判断一棵树是否为平衡二叉树
+
+    /**
+     * 时间复杂度：O(n^2)
+     * @param root
+     * @return
+     */
+    public boolean isBalanced(TreeNode root){
+        if(root == null){
+            return true;
+        }
+
+        int leftH = getHeight(root.left);
+        int rightH = getHeight(root.right);
+        return Math.abs(leftH - rightH) < 2
+        && isBalanced(root.left)
+        && isBalanced(root.right);
+    }
+    /**
+     * 时间复杂度：O(n)
+     * @param root
+     * @return
+     */
+    public boolean isBalanced1(TreeNode root){
+
+//        return getH(root) >= 0;
+        return getH1(root) >= 0;
+
+    }
+
+    public int getH(TreeNode root){
+        if(root == null){
+            return 0;
+        }
+        int leftHeight =  getHeight(root.left);
+        int rightHeight =  getHeight(root.right);
+
+        if(leftHeight >= 0 && rightHeight >= 0
+        && Math.abs(leftHeight - rightHeight) <= 1){
+            return Math.max(leftHeight, rightHeight) + 1;
+        }else {
+            return -1;
+        }
+
+    }
+    public int getH1(TreeNode root){
+        if(root == null){
+            return 0;
+        }
+        int leftHeight =  getHeight(root.left);
+        if(leftHeight < 0){
+            return -1;
+        }
+        int rightHeight =  getHeight(root.right);
+        if (rightHeight < 0){
+            return -1;
+        }
+
+        if(Math.abs(leftHeight - rightHeight) <= 1){
+            return Math.max(leftHeight, rightHeight) + 1;
+        }else {
+            return -1;
+        }
+
+    }
+
+    //判断一棵树是否为轴对称
+    public boolean isSymmetric(TreeNode root){
+        if(root == null){
+            return true;
+        }
+        return isSymmetricChild(root.left, root.right);
+
+    }
+
+    public boolean isSymmetricChild(TreeNode leftTree, TreeNode rightTree){
+        if(leftTree == null && rightTree != null || leftTree != null && rightTree == null){
+            return false;
+        }
+        if(leftTree == null && rightTree == null){
+            return true;
+        }
+
+        if(leftTree.val != rightTree.val){
+            return false;
+        }
+
+        return isSymmetricChild(leftTree.left, rightTree.right)
+                && isSymmetricChild(leftTree.right, rightTree.left);
+    }
+
+    //层序遍历
+    public void levelOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (! queue.isEmpty()){
+            TreeNode cur = queue.poll();
+            System.out.print(cur.val + " ");
+            if(cur.left != null){
+                queue.offer(cur.left);
+            }
+            if(cur.right != null){
+                queue.offer(cur.right);
+            }
+        }
+    }
+
+    public List<List<Character>> levelOrder2(TreeNode root){
+        List<List<Character>> list = new ArrayList<>();
+        if(root == null){
+            return list;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        queue.offer(root);
+        while (! queue.isEmpty()){
+            int size = queue.size();
+            List<Character> tmp = new ArrayList<>();
+            while (size != 0){
+
+                TreeNode cur = queue.poll();
+//                System.out.print(cur.val + " ");
+                tmp.add(cur.val);
+                size--;
+                if(cur.left != null){
+                    queue.offer(cur.left);
+                }
+                if(cur.right != null){
+                    queue.offer(cur.right);
+                }
+
+            }
+
+            list.add(tmp);
+        }
+        return list;
+    }
+
+
+    /**
+     * 找到二叉树中两个指定节点的最近公共祖先
+     */
+    //方法一：
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q){
+        if(root == null){
+            return null;
+        }
+        //先判断根节点是不是其中一个
+        if(root == p || root == q){
+            return root;
+        }
+
+        TreeNode leftRet = lowestCommonAncestor(root.left, p, q);
+        TreeNode rightRet = lowestCommonAncestor(root.right, p, q);
+
+        if(leftRet != null && rightRet != null){
+            return root;
+        } else if (leftRet != null) {
+            return leftRet;
+        } else if (rightRet != null) {
+            return rightRet;
+        }
+
+        return null;
+    }
+
+    //方法二：
+    public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q){
+        //1.两个栈中储存好数据
+        Deque<TreeNode> stack1 = new LinkedList<>();
+        getPath(root, p, stack1);
+        Deque<TreeNode> stack2 = new LinkedList<>();
+        getPath(root, q, stack2);
+        //判断栈的大小
+        int size1 = stack1.size();
+        int size2 = stack2.size();
+        if(size1 > size2){
+            int size = size1 - size2;
+            while (size != 0){
+                stack1.pop();
+                size--;
+            }
+        }else {
+            int size = size2 - size1;
+            while (size != 0){
+                stack2.pop();
+                size--;
+            }
+        }
+        //此时栈里的数据个数一样
+        while (!stack1.isEmpty() && !stack2.isEmpty()){
+            if(stack1.peek() != stack2.peek()){
+                stack1.pop();
+                stack2.pop();
+            }else {
+                return stack1.peek();
+            }
+        }
+        return null;
+    }
+    /**
+     * 找到从根节点到指定节点node路径上的所有的节点，存放到栈当中
+     */
+    public boolean getPath(TreeNode root, TreeNode node, Deque<TreeNode> stack){
+        if(root == null || node == null){
+            return false;
+        }
+        stack.push(root);
+        //放完之后，要检查
+        if(root == node){
+            return true;
+        }
+        boolean ret1 = getPath(root.left, node, stack);
+        if(ret1){
+            return true;
+        }
+        boolean ret2 = getPath(root.left, node, stack);
+        if(ret2){
+            return true;
+        }
+        stack.pop();
+        return false;
+    }
+
 
 
 }
