@@ -506,5 +506,74 @@ public class BinaryTreeDemo {
     }
 
 
+    /**
+     * 根据前序遍历和中序遍历构造一颗二叉树
+     *
+     */
+    public int i1 = 0;
+    public TreeNode buildTree(char[] preorder, char[] inorder){
+        return buildTreeChild(preorder, inorder, 0, inorder.length - 1);
+    }
+    public TreeNode buildTreeChild(char[] preorder, char[] inorder, int inbegin, int inend){
+        if(inbegin > inend){
+            return null;
+        }
+
+        TreeNode root = new TreeNode(preorder[i]);
+
+        //找到当前根在中序遍历中的位置
+        int rootIndex = findIndex(inorder, inbegin, inend, preorder[i]);
+        i++;
+
+        root.left = buildTreeChild(preorder, inorder, inbegin, rootIndex - 1);
+        root.right = buildTreeChild(preorder, inorder, rootIndex + 1, inend);
+    }
+    private int findIndex(char[] inorder, int inbegin, int inend, char key){
+        int j;
+        for (j = inbegin; j < inend + 1; j++) {
+            if(inorder[j] == key){
+                return j;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 根据二叉树创建字符串
+     * 力扣题
+     */
+    public String tree2str(TreeNode root){
+        if(root == null){
+            return null;
+        }
+        StringBuilder stringBuilder  = new StringBuilder();
+
+    }
+    public void tree2strChilde(TreeNode t, StringBuilder stringBuilder){
+        if(t == null){
+            return;
+        }
+        stringBuilder.append(t.val);
+        if(t.left != null){
+            stringBuilder.append("(");
+            tree2strChilde(t.left, stringBuilder);
+            stringBuilder.append(")");
+        }else {
+            //左边为空
+            if(t.right != null){
+                stringBuilder.append("()");
+            }else {
+                return;
+            }
+        }
+
+        if(t.right == null){
+            return;
+        }else {
+            stringBuilder.append("(");
+            tree2strChilde(t.right, stringBuilder);
+            stringBuilder.append(")");
+        }
+    }
 
 }
