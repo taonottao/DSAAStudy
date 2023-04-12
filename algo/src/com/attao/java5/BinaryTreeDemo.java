@@ -568,12 +568,42 @@ public class BinaryTreeDemo {
         }
 
         if(t.right == null){
-            return;
+//            return;
         }else {
             stringBuilder.append("(");
             tree2strChilde(t.right, stringBuilder);
             stringBuilder.append(")");
         }
+    }
+
+    /**
+     * 判断一棵树是不是完全二叉树
+     */
+    public boolean isCompleteTree(TreeNode root){
+        if(root == null){
+            return true;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()){
+            TreeNode cur = queue.poll();
+            if(cur != null){
+                queue.offer(cur.left);
+                queue.offer(cur.right);
+            }else {
+                break;
+            }
+        }
+        while (queue != null){
+            TreeNode tmp = queue.poll();
+            if(tmp  != null){
+                return false;
+            }
+        }
+
+        return true;
+        
     }
 
 }
