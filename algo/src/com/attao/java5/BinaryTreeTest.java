@@ -32,6 +32,8 @@ public class BinaryTreeTest {
         System.out.println("==================");
         binaryTree.preOrder(root);
         System.out.println();
+        binaryTree.preOrderNor(root);
+        System.out.println();
         System.out.println("==================");
         binaryTree.levelOrder(root);
 //        binaryTree.inOrder(root);

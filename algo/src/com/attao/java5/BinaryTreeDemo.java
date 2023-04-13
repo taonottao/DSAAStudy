@@ -69,6 +69,30 @@ public class BinaryTreeDemo {
         preOrder(root.right);
     }
 
+    /**
+     * 非递归实现前序遍历
+     * @param root
+     * @return
+     */
+    public void preOrderNor(TreeNode root){
+        if(root == null){
+            return;
+        }
+        TreeNode cur = root;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        while (cur != null || !stack.isEmpty()){
+
+            while (cur != null){
+                stack.push(cur);
+                System.out.print(cur.val + " ");
+                cur = cur.left;
+            }
+
+            TreeNode top = stack.pop();
+            cur = top.right;
+        }
+    }
+
     public List<Character> preOrderTraversal(TreeNode root){
         List<Character> ret = new ArrayList<>();
         if(root == null){
@@ -103,6 +127,9 @@ public class BinaryTreeDemo {
         inOrder(root.left);
         System.out.print(root.val + " ");
         inOrder(root.right);
+    }
+    public void inOrderNor(TreeNode root){
+        
     }
 
     //后续遍历 左子树 右子树 根
@@ -519,15 +546,18 @@ public class BinaryTreeDemo {
             return null;
         }
 
-        TreeNode root = new TreeNode(preorder[i]);
+        TreeNode root = new TreeNode(preorder[i1]);
 
         //找到当前根在中序遍历中的位置
-        int rootIndex = findIndex(inorder, inbegin, inend, preorder[i]);
-        i++;
+        int rootIndex = findIndex(inorder, inbegin, inend, preorder[i1]);
+        i1++;
 
         root.left = buildTreeChild(preorder, inorder, inbegin, rootIndex - 1);
         root.right = buildTreeChild(preorder, inorder, rootIndex + 1, inend);
+
+        return root;
     }
+
     private int findIndex(char[] inorder, int inbegin, int inend, char key){
         int j;
         for (j = inbegin; j < inend + 1; j++) {
@@ -547,6 +577,8 @@ public class BinaryTreeDemo {
             return null;
         }
         StringBuilder stringBuilder  = new StringBuilder();
+        tree2strChilde(root, stringBuilder);
+        return String.valueOf(stringBuilder);
 
     }
     public void tree2strChilde(TreeNode t, StringBuilder stringBuilder){
