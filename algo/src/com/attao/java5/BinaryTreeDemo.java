@@ -129,7 +129,21 @@ public class BinaryTreeDemo {
         inOrder(root.right);
     }
     public void inOrderNor(TreeNode root){
-        
+        if(root == null){
+            return;
+        }
+        TreeNode cur = root;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        while (cur != null || !stack.isEmpty()){
+
+            while (cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            TreeNode top = stack.pop();
+            System.out.print(top.val + " ");
+            cur = top.right;
+        }
     }
 
     //后续遍历 左子树 右子树 根
@@ -140,6 +154,29 @@ public class BinaryTreeDemo {
         postOrder(root.left);
         postOrder(root.right);
         System.out.print(root.val + " ");
+    }
+
+    public void postOrderNor(TreeNode root){
+        if(root == null){
+            return;
+        }
+        TreeNode cur = root;
+        TreeNode prev = null;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        while (cur != null || !stack.isEmpty()){
+            while (cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            TreeNode top = stack.peek();
+            if(top.right ==  null || top.right == prev){
+                System.out.print(top.val + " ");
+                stack.pop();
+                prev = top;
+            }else {
+                cur = top.right;
+            }
+        }
     }
 
     //获取树中节点个数

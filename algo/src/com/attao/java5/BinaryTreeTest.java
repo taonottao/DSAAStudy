@@ -30,16 +30,18 @@ public class BinaryTreeTest {
         BinaryTreeDemo binaryTree = new BinaryTreeDemo();
         BinaryTreeDemo.TreeNode root = binaryTree.creatTree();
         System.out.println("==================");
-        binaryTree.preOrder(root);
-        System.out.println();
-        binaryTree.preOrderNor(root);
-        System.out.println();
+//        binaryTree.preOrder(root);
+//        System.out.println();
+//        binaryTree.preOrderNor(root);
+//        System.out.println();
         System.out.println("==================");
-        binaryTree.levelOrder(root);
+//        binaryTree.levelOrder(root);
 //        binaryTree.inOrder(root);
 //        System.out.println();
-//        binaryTree.postOrder(root);
-//        System.out.println();
+//        binaryTree.inOrderNor(root);
+        binaryTree.postOrder(root);
+        System.out.println();
+        binaryTree.postOrderNor(root);
 //        System.out.println("==================");
 //
 //        System.out.println(binaryTree.size(root));
