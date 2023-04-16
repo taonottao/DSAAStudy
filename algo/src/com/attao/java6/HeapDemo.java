@@ -1,5 +1,7 @@
 package com.attao.java6;
 
+import java.util.Arrays;
+
 /**
  * @version 1.0
  * @Author T-WANG
@@ -55,5 +57,57 @@ public class HeapDemo {
                 break;
             }
         }
+    }
+
+
+    private void shiftUp(int child){
+        int parent = (child - 1) / 2;
+        while(child > 0){
+            if(elem[child] > elem[parent]){
+                int tmp = elem[child];
+                elem[child] = elem[parent];
+                elem[parent] = tmp;
+                child = parent;
+                parent = (child - 1) / 2;
+            }else {
+                break;
+            }
+        }
+    }
+    //向上调整建堆的时间复杂度：O(n*logn)
+    public void offer(int val){
+        if(isFull()){
+            elem = Arrays.copyOf(elem, 2 * elem.length);
+        }
+        elem[usedSize++] = val;
+        //向上调整
+        shiftUp(usedSize  - 1);
+    }
+    public boolean isFull(){
+        return usedSize == elem.length;
+    }
+
+
+    public int pop(){
+        if(isEmpty()){
+            throw new RuntimeException("堆为空！！！");
+        }
+        int tmp = elem[0];
+        elem[0] = elem[usedSize - 1];
+        elem[usedSize - 1] = tmp;
+        usedSize--;
+        shiftDown(0, usedSize);
+        return tmp;
+    }
+
+    public boolean  isEmpty(){
+        return usedSize == 0;
+    }
+
+    public int peek(){
+        if(isEmpty()){
+            throw new RuntimeException("堆为空！！！");
+        }
+        return elem[0];
     }
 }
