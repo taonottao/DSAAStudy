@@ -20,8 +20,8 @@ public class PriorityQueueTest {
         System.out.println(priorityQueue.peek());
 
         Queue<Student> priorityQueue1 = new PriorityQueue<>();
-//        priorityQueue1.offer(new Student(13, "张三"));
-//        priorityQueue1.offer(new Student(23, "李四"));
+        priorityQueue1.offer(new Student("张三", 13));
+        priorityQueue1.offer(new Student("李四", 23));
         //不能插入null
 //        priorityQueue1.offer(null);
 

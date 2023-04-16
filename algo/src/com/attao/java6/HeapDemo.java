@@ -110,4 +110,21 @@ public class HeapDemo {
         }
         return elem[0];
     }
+
+    /**
+     * 堆的排序:降序
+     * 时间复杂度：O(n*logn)
+     * 空间复杂度：O(1)
+     */
+    public void heapSort(){
+        int end  = usedSize - 1;
+        while (end > 0){
+            int tmp = elem[0];
+            elem[0] = elem[end];
+            elem[end] = tmp;
+            shiftDown(0, end);
+            end--;
+        }
+
+    }
 }
