@@ -51,6 +51,8 @@ public class SortTest {
         testInsertSort(arr);
 
         testSelectSort(arr);
+
+        testHeapSort(arr);
     }
 
     public static void testShellSort(int[] arr){
@@ -75,13 +77,29 @@ public class SortTest {
         long endTime = System.currentTimeMillis();
         System.out.println("选择排序耗时:" + (endTime - startTime));
     }
+    public static void testHeapSort(int[] arr){
+        arr = Arrays.copyOf(arr, arr.length);
+        long startTime = System.currentTimeMillis();
+        Sort2.heapSort(arr);
+        long endTime = System.currentTimeMillis();
+        System.out.println("堆排序耗时:" + (endTime - startTime));
+    }
 
     @Test
     public void test4(){
         int[] arr = {12,56,32,67,10,19,4};
-        Sort1.selectSort(arr);
+//        Sort1.selectSort(arr);
+        Sort1.selectSort1(arr);
         System.out.println(Arrays.toString(arr));
     }
 
+    @Test
+    public void test5(){
+        int[] arr = {12,56,32,67,10,19,4};
+//        Sort1.selectSort(arr);
+//        Sort2.heapSort(arr);
+        Sort2.bubbleSort(arr);
+        System.out.println(Arrays.toString(arr));
+    }
 
 }

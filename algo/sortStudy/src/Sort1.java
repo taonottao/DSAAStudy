@@ -32,4 +32,30 @@ public class Sort1 {
         arr[i]  = arr[j];
         arr[j] = tmp;
     }
+
+    public static void selectSort1(int[] arr){
+        int left = 0;
+        int right = arr.length - 1;
+        while (left < right){
+            int minIndex = left;
+            int maxIndex = left;
+            for (int i = left + 1; i <= right; i++) {
+                if(arr[i] < arr[minIndex]){
+                    minIndex = i;
+                }
+                if(arr[i] > arr[maxIndex]){
+                    maxIndex = i;
+                }
+            }
+
+            swap(arr, minIndex, left);//这里有可能把最大值换到minIndex位置
+            if(maxIndex == left){//最大值正好在left的位置
+                maxIndex = minIndex;
+            }
+            swap(arr, maxIndex, right);
+
+            left++;
+            right--;
+        }
+    }
 }
