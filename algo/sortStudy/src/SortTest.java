@@ -19,8 +19,8 @@ public class SortTest {
 
     public void initArrayOrder(int[] arr){
         for (int i = 0; i < arr.length; i++) {
-//            arr[i] = i;
-            arr[i] = arr.length - i;
+            arr[i] = i;
+//            arr[i] = arr.length - i;
         }
     }
 
@@ -53,6 +53,8 @@ public class SortTest {
         testSelectSort(arr);
 
         testHeapSort(arr);
+
+        testQuickSort(arr);//有可能栈溢出异常
     }
 
     public static void testShellSort(int[] arr){
@@ -84,6 +86,13 @@ public class SortTest {
         long endTime = System.currentTimeMillis();
         System.out.println("堆排序耗时:" + (endTime - startTime));
     }
+    public static void testQuickSort(int[] arr){
+        arr = Arrays.copyOf(arr, arr.length);
+        long startTime = System.currentTimeMillis();
+        Sort3.quickSort(arr);
+        long endTime = System.currentTimeMillis();
+        System.out.println("快速排序耗时:" + (endTime - startTime));
+    }
 
     @Test
     public void test4(){
@@ -98,7 +107,8 @@ public class SortTest {
         int[] arr = {12,56,32,67,10,19,4};
 //        Sort1.selectSort(arr);
 //        Sort2.heapSort(arr);
-        Sort2.bubbleSort(arr);
+//        Sort2.bubbleSort(arr);
+        Sort3.quickSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
