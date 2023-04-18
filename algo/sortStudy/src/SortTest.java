@@ -108,7 +108,8 @@ public class SortTest {
 //        Sort1.selectSort(arr);
 //        Sort2.heapSort(arr);
 //        Sort2.bubbleSort(arr);
-        Sort3.quickSort(arr);
+//        Sort3.quickSort1(arr);
+        Sort4.mergeSort1(arr);
         System.out.println(Arrays.toString(arr));
     }
 

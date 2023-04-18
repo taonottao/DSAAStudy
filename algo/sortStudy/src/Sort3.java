@@ -1,3 +1,6 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  * 快速排序
  *
@@ -127,6 +130,38 @@ public class Sort3 {
         int tmp = arr[i];
         arr[i]  = arr[j];
         arr[j] = tmp;
+    }
+
+    /**
+     * 非递归实现快速排序
+     */
+    public static void quickSort1(int[] arr){
+        Deque<Integer> stack =  new ArrayDeque<>();
+        int left = 0;
+        int right = arr.length - 1;
+        int pivot = partition(arr, left, right);
+        if(pivot >left + 1){
+            stack.push(left);
+            stack.push(pivot - 1);
+        }
+        if(pivot < right - 1){
+            stack.push(pivot + 1);
+            stack.push(right);
+        }
+        while (!stack.isEmpty()){
+            right = stack.pop();
+            left = stack.pop();
+            pivot = partition(arr, left, right);
+            if(pivot >left + 1){
+                stack.push(left);
+                stack.push(pivot - 1);
+            }
+            if(pivot < right - 1){
+                stack.push(pivot + 1);
+                stack.push(right);
+            }
+        }
+
     }
 
 }
