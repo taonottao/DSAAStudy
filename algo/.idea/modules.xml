@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/SearchTreeStudy/SearchTreeStudy.iml" filepath="$PROJECT_DIR$/SearchTreeStudy/SearchTreeStudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/algo.iml" filepath="$PROJECT_DIR$/algo.iml" />
       <module fileurl="file://$PROJECT_DIR$/sortStudy/sortStudy.iml" filepath="$PROJECT_DIR$/sortStudy/sortStudy.iml" />
     </modules>

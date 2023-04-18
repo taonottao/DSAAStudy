@@ -104,12 +104,14 @@ public class SortTest {
 
     @Test
     public void test5(){
-        int[] arr = {12,56,32,67,10,19,4};
+//        int[] arr = {12,56,32,67,10,19,4};
+        int[] arr = {12,6,2,6,10,9,4};
 //        Sort1.selectSort(arr);
 //        Sort2.heapSort(arr);
 //        Sort2.bubbleSort(arr);
 //        Sort3.quickSort1(arr);
-        Sort4.mergeSort1(arr);
+//        Sort4.mergeSort1(arr);
+        Sort5.countSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
