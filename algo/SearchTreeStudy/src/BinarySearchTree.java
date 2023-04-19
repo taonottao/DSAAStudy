@@ -35,4 +35,46 @@ public class BinarySearchTree {
         return null;
     }
 
+    /**
+     * 插入val
+     * @param val
+     */
+    public void insert(int val){
+        if(root ==  null){
+            root = new TreeNode(val);
+            return;
+        }
+        TreeNode cur = root;
+        TreeNode parent = null;
+        while (cur != null){
+            parent = cur;
+            if(cur.val > val){
+                cur = cur.left;
+            } else if (cur.val == val) {
+                return;
+            } else{
+                cur = cur.right;
+            }
+        }
+        cur = new TreeNode(val);
+        if(parent.val > val){
+            parent.left = cur;
+        }else {
+            parent.right = cur;
+        }
+    }
+
+    /**
+     * 中序遍历
+     * @param root
+     */
+    public void inOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+        inOrder(root.left);
+        System.out.print(root.val + " ");
+        inOrder(root.right);
+    }
+
 }
