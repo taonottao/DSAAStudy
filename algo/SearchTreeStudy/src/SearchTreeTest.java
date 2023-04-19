@@ -22,6 +22,9 @@ public class SearchTreeTest {
 
         BinarySearchTree.TreeNode ret = binarySearchTree.findVal(12);
         System.out.println(ret.val);
+
+        binarySearchTree.remove(13);
+        binarySearchTree.inOrder(binarySearchTree.root);
     }
 
 }
