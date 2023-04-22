@@ -115,6 +115,57 @@ public class SetMapExer {
 
         return map.get(head);
     }
+
+
+    public int numJewelsInStones(String jewels, String stones){
+        int count = 0;
+        Set<Character> set = new HashSet<>();
+        //1.遍历jewels
+        for (int i = 0; i < jewels.length(); i++) {
+            char ch = jewels.charAt(i);
+            set.add(ch);
+        }
+        //2.遍历stones
+        for (int i = 0; i < stones.length(); i++) {
+            if(set.contains(stones.charAt(i))){
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    /**
+     * 找出坏掉的键盘
+     */
+    public static void func(String str1, String str2){
+        Set<Character> set = new HashSet<>();
+        Set<Character> set1 = new HashSet<>();
+        String s1 = str1.toUpperCase();
+        String s2 = str2.toUpperCase();
+        for (int i = 0; i < s2.length(); i++) {
+            char  ch = s2.charAt(i);
+            set.add(ch);
+        }
+        for (int i = 0; i < s1.length(); i++) {
+            if(!set.contains(s1.charAt(i))){
+                set1.add(s1.charAt(i));
+            }
+        }
+        for(char ch : set1){
+            System.out.print(ch);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        while (scan.hasNextLine()){
+            String str1 = scan.nextLine();
+            String str2 = scan.nextLine();
+            func(str1, str2);
+        }
+    }
+
 }
 
 class Node {
