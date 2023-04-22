@@ -166,6 +166,75 @@ public class SetMapExer {
         }
     }
 
+    /**
+     * 给定一个单词列表words和一个整数k，返回前k个出现次数最多的单词。
+     * 返回的答案应该按单词出现频率由高到低排序。如果不同的单词有相同出现频率，按字典顺序排序。
+     * @param words
+     * @param k
+     * @return
+     */
+    public List<String> topKFrequent(String[] words, int k){
+        //1.遍历数组，统计每个单词出现的频率
+        Map<String, Integer> hashMap = new HashMap<>();
+        for (String s : words){
+            if(hashMap.get(s) == null){
+                hashMap.put(s, 1);
+            }else {
+                hashMap.put(s, hashMap.get(s) + 1);
+            }
+        }
+
+        //2.建立小根堆
+        PriorityQueue<Map.Entry<String, Integer>> minHeap = new PriorityQueue<>(
+                k, new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                if(o1.getValue().compareTo(o2.getValue()) == 0){
+                    return o2.getKey().compareTo(o1.getKey());
+                }
+                return o1.getValue().compareTo(o2.getValue());
+            }
+        }
+        );
+        //3.遍历hashMap，把里面的数据放到小根堆
+        for(Map.Entry<String, Integer> entry : hashMap.entrySet()){
+            if(minHeap.size() < k){
+                minHeap.offer(entry);
+            }else {
+                //小根堆放满了k个，下一个entry和堆顶元素比较
+                Map.Entry<String, Integer> top = minHeap.peek();
+                if(top.getValue().compareTo(entry.getValue()) < 0){
+                    minHeap.poll();
+                    minHeap.offer(entry);
+                }else {
+                    //频率相同的情况
+                    if(top.getValue().compareTo(entry.getValue()) == 0){
+                        if(top.getKey().compareTo(entry.getKey()) > 0){
+                            minHeap.poll();
+                            minHeap.offer(entry);
+                        }
+                    }
+                }
+            }
+        }
+        //4.此时小根堆中已经有了结果
+
+        List<String> ret = new ArrayList<>();
+        for (int i = 0; i < k; i++) {
+            String key = minHeap.poll().getKey();
+            ret.add(key);
+        }
+        Collections.reverse(ret);
+//        System.out.println("ret:" + ret);
+        return ret;
+    }
+
+    @Test
+    public void test2(){
+        String[] words = {"a","b","a","c","d","a","c","e","e","a","e"};
+        topKFrequent(words, 3);
+    }
+
 }
 
 class Node {
