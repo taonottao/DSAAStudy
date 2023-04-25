@@ -106,5 +106,62 @@ public class Exer2 {
         }
     }
 
+    /**
+     * 找出最大回文字符串
+     * @param s
+     * @return
+     */
+    public String longestPalindrome(String s) {
+        if(s.length() == 0 || s == null){
+            return s;
+        }
+        int l  = 0;
+        int r = 0;
+        int mid = 0;
+        List<List<Character>> lists = new ArrayList<>();
+        for(mid = 1; mid < s.length()- 1; mid++){
+            List<Character> list1 = new ArrayList<>();
+            List<Character> list2 = new ArrayList<>();
+            List<Character> list3 = new ArrayList<>();
+            l = mid - 1;
+            r = mid + 1;
+            while(l >=0 && mid < s.length() && s.charAt(mid) == s.charAt(l)){
+                l--;
+                mid++;
+            }
+            for(l = l +1; l < mid; l++){
+                list1.add(s.charAt(l));
+            }
+            lists.add(list1);
+            while(mid >=0 && r < s.length() && s.charAt(mid) == s.charAt(r)){
+                mid--;
+                r++;
+            }
+            for(mid = mid +1; mid < r; mid++){
+                list2.add(s.charAt(mid));
+            }
+            lists.add(list2);
+            while(s.charAt(l) == s.charAt(r)){
+                l--;
+                r++;
+            }
+            for(l = l + 1; l < r; l++){
+                list3.add(s.charAt(l));
+            }
+            lists.add(list3);
+        }
+        int i = 0;
+        int max = lists.get(0).size();
+        int index = 0;
+        for(i = 1; i < lists.size(); i++){
+            if(max < lists.get(i).size()){
+                max = lists.get(i).size();
+                index = i;
+            }
+        }
+
+        return lists.get(index).toString();
+    }
+
 
 }
