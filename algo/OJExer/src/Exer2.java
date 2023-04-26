@@ -106,6 +106,12 @@ public class Exer2 {
         }
     }
 
+    @Test
+    public void test2(){
+        String str = "babad";
+        String s = longestPalindrome(str);
+        System.out.println(s);
+    }
     /**
      * 找出最大回文字符串
      * @param s
@@ -132,6 +138,7 @@ public class Exer2 {
             for(l = l +1; l < mid; l++){
                 list1.add(s.charAt(l));
             }
+            l = l - 1;
             lists.add(list1);
             while(mid >=0 && r < s.length() && s.charAt(mid) == s.charAt(r)){
                 mid--;
@@ -140,8 +147,9 @@ public class Exer2 {
             for(mid = mid +1; mid < r; mid++){
                 list2.add(s.charAt(mid));
             }
+            mid = mid - 1;
             lists.add(list2);
-            while(s.charAt(l) == s.charAt(r)){
+            while(l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)){
                 l--;
                 r++;
             }
@@ -149,6 +157,7 @@ public class Exer2 {
                 list3.add(s.charAt(l));
             }
             lists.add(list3);
+            l = l - 1;
         }
         int i = 0;
         int max = lists.get(0).size();
