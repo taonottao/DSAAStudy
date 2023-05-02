@@ -123,53 +123,39 @@ public class Exer2 {
         }
         int l  = 0;
         int r = 0;
-        int mid = 0;
-        List<List<Character>> lists = new ArrayList<>();
-        for(mid = 1; mid < s.length()- 1; mid++){
-            List<Character> list1 = new ArrayList<>();
-            List<Character> list2 = new ArrayList<>();
-            List<Character> list3 = new ArrayList<>();
-            l = mid - 1;
-            r = mid + 1;
-            while(l >=0 && mid < s.length() && s.charAt(mid) == s.charAt(l)){
-                l--;
-                mid++;
-            }
-            for(l = l +1; l < mid; l++){
-                list1.add(s.charAt(l));
-            }
-            l = l - 1;
-            lists.add(list1);
-            while(mid >=0 && r < s.length() && s.charAt(mid) == s.charAt(r)){
-                mid--;
-                r++;
-            }
-            for(mid = mid +1; mid < r; mid++){
-                list2.add(s.charAt(mid));
-            }
-            mid = mid - 1;
-            lists.add(list2);
-            while(l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)){
-                l--;
-                r++;
-            }
-            for(l = l + 1; l < r; l++){
-                list3.add(s.charAt(l));
-            }
-            lists.add(list3);
-            l = l - 1;
-        }
-        int i = 0;
-        int max = lists.get(0).size();
-        int index = 0;
-        for(i = 1; i < lists.size(); i++){
-            if(max < lists.get(i).size()){
-                max = lists.get(i).size();
-                index = i;
+
+        for (int i = 0; i < s.length(); i++) {//i为中心位置
+            int len1 = expandCenter(s, i, i);
+            int len2 = expandCenter(s, i, i + 1);
+            int max = Math.max(len1, len2);
+
+            // 计算对应最大回文子串的起点和终点
+            if(max > r - l){
+                l = i - (max - 1)/2;
+                r = i + max/2;
             }
         }
 
-        return lists.get(index).toString();
+        return s.substring(l, r + 1);
+
+    }
+    private int expandCenter(String s,int left,int right){
+        // left = right 的时候，此时回文中心是一个字符，回文串的长度是奇数
+        // right = left + 1 的时候，此时回文中心是一个空隙，回文串的长度是偶数
+        // 跳出循环的时候恰好满足 s.charAt(left) ！= s.charAt(right)
+        while (left >= 0 && right <s.length() && s.charAt(left) == s.charAt(right)){
+            left--;
+            right++;
+        }
+        // 回文串的长度是right-left+1-2 = right - left - 1
+        return right - left - 1;
+    }
+
+    @Test
+    public void test3(){
+        String s = "babad";
+        String s1 = longestPalindrome(s);
+        System.out.println(s1);
     }
 
 
