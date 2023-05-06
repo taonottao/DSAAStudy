@@ -139,7 +139,7 @@ public class Exer2 {
         return s.substring(l, r + 1);
 
     }
-    private int expandCenter(String s,int left,int right){
+    public int expandCenter(String s,int left,int right){
         // left = right 的时候，此时回文中心是一个字符，回文串的长度是奇数
         // right = left + 1 的时候，此时回文中心是一个空隙，回文串的长度是偶数
         // 跳出循环的时候恰好满足 s.charAt(left) ！= s.charAt(right)
@@ -156,6 +156,7 @@ public class Exer2 {
         String s = "babad";
         String s1 = longestPalindrome(s);
         System.out.println(s1);
+        System.out.println(expandCenter(s, 2, 2));
     }
 
 
