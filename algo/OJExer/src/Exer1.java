@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @version 1.0
@@ -16,6 +18,7 @@ class TreeNode{
 }
 
 public class Exer1 {
+    List list = new ArrayList()
     /**
      * 输入一棵二叉搜索树，将其变为一个有序链表
      * @param pRootOfTree
