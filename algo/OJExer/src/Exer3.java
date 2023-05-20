@@ -7,7 +7,7 @@ import java.util.*;
  * @Date 2023/5/19 8:08
  */
 public class Exer3 {
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String s = scanner.next();
         int score = 0;
@@ -79,5 +79,26 @@ public class Exer3 {
         }
     }
 
+
+    public static void main(String[] args) {
+        Employee e = new Employee("123");
+        System.out.println(e.empID);
+    }
 }
+
+class Person {
+    String name = "No name";
+    public Person(String nm) {
+        name = nm;
+    }
+}
+class Employee extends Person {
+    String empID = "0000";
+    public Employee(String id) {
+        super(id);
+        empID = id;
+    }
+}
+
+
 
