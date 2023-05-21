@@ -80,10 +80,65 @@ public class Exer3 {
     }
 
 
-    public static void main(String[] args) {
-        Employee e = new Employee("123");
-        System.out.println(e.empID);
+    public static void main2(String[] args) {
+//        Employee e = new Employee("123");
+//        System.out.println(e.empID);
+        Scanner scanner = new Scanner(System.in);
+        int n = 0;
+        int i = 0;
+        int count = 0;
+        int max = 0;
+        n = scanner.nextInt();
+        while(i < 8){
+            if(((n >> i) & 1) == 1){
+                count++;
+            }
+            if(max < count){
+                max = count;
+            }
+            if((n & (1 << i)) == 0){
+                count = 0;
+            }
+            i++;
+        }
+        System.out.println(max);
     }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int i = scanner.nextInt();
+        find(i);
+    }
+
+    public static int binInsert(int n, int m, int j, int i) {
+        // write code here
+        m = (m << (31-j));
+        return n|m;
+    }
+    public static boolean judge(int n){
+        int i = 2;
+        for(i = 2; i <= Math.sqrt(n); i++){
+            if(n % i ==0){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static void find(int n){
+        int i = n/2;
+        int j = 0;
+        for(; i >1 ; i--){
+            if(judge(i)){
+                j = n - i;
+                if(judge(j)){
+                    System.out.println(i);
+                    System.out.println(j);
+                    break;
+                }
+            }
+        }
+    }
+
 }
 
 class Person {
