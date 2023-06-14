@@ -52,7 +52,7 @@ public class Exer5 {
         }
     }
 
-    // 存储 num 的除1 和 自身的约数
+    // 存储 num 的除 1 和 自身 的约数
     public static List<Integer> div(int num){
         List<Integer> list = new ArrayList<>();
         for(int i = 2; i * i <= num; i++){
