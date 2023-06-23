@@ -40,5 +40,7 @@ public class Test {
         Node root = build();
         // 此时这个 root 就相当于树的根节点
         // 当前代码中只有一个引用 root, 但是它管理了 N 个对象
+        String s = "abcd";
+        System.out.println(s.indexOf(";"));
     }
 }
