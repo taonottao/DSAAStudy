@@ -1,7 +1,6 @@
 package Demo1;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @version 1.0
@@ -9,6 +8,40 @@ import java.util.Queue;
  * @Date 2023/7/6 20:20
  */
 public class Exer3 {
+    public static void main(String[] args) {
+//        double d = 1.2333;
+////        char c = '\0';
+//        System.out.printf("%.2f\\%", (10/3.0)*100);
+        Scanner in = new Scanner(System.in);
+        // 注意 hasNext 和 hasNextLine 的区别
+        while (in.hasNextLine()) { // 注意 while 处理多个 case
+            String a = in.nextLine();
+            String b = in.nextLine();
+            List<String> list = new ArrayList<>();
+            for(int i = 0; i < a.length(); i++){
+                String str = "";
+                if(a.charAt(i) == '"'){
+                    i++;
+                    while(a.charAt(i)!='"'){
+                        str+= a.charAt(i);
+                    }
+                    list.add(str);
+                }else{
+                    while(i < a.length() && a.charAt(i)!=','){
+                        str += a.charAt(i);
+                        i++;
+                    }
+                    list.add(str);
+                }
+            }
+            if(list.contains(b)){
+                System.out.println("Ignore");
+            }else{
+                System.out.println("Important!");
+            }
+
+        }
+    }
     /**
      * 根据二叉树创建字符串（力扣）
      */

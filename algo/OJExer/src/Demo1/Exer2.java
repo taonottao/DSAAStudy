@@ -16,6 +16,9 @@ class TreeNode {
 }
 
 public class Exer2 {
+    public static void main(String[] args) {
+        System.out.println("%");
+    }
     /**
      * 给定一个二叉树的中序与后序遍历结果，请你根据两个序列构造符合这两个序列的二叉树。
      *  保证节点的值各不相同
