@@ -1,5 +1,9 @@
 package Demo1;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 /**
  * @version 1.0
  * @Author T-WANG
@@ -47,5 +51,72 @@ public class Exer2 {
             if(inorder[i] == val) return i;
         }
         return -1;
+    }
+
+    /**
+     * 中序遍历非递归实现
+     */
+    public int[] inorderTraversal (TreeNode root) {
+        // write code here
+        if(root == null) {
+            int[] sb = new int[]{};
+            return sb;
+        }
+        List<TreeNode> list = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        while(cur != null || !stack.isEmpty()){
+            while(cur != null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            TreeNode top = stack.pop();
+            list.add(top);
+            cur = top.right;
+        }
+        int[] arr = new int[list.size()];
+        int i = 0;
+        for(TreeNode tmp : list){
+            arr[i++] = tmp.val;
+        }
+
+        return arr;
+    }
+
+    /**
+     * 后序遍历非递归
+     */
+    public int[] postorderTraversal (TreeNode root) {
+        // write code here
+        if(root == null){
+            int[] sb = new int[]{};
+            return sb;
+        }
+        List<TreeNode> list = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode cur = root;
+        TreeNode prev = null;
+        while(cur!=null || !stack.isEmpty()){
+            while(cur!=null){
+                stack.push(cur);
+                cur = cur.left;
+            }
+            TreeNode top = stack.peek();
+            if(top.right != null && top.right != prev){
+                cur = top.right;
+            }else{
+                list.add(top);
+                prev = top;
+                stack.pop();
+            }
+        }
+
+        int[] arr = new int[list.size()];
+        int i = 0;
+        for(TreeNode tmp : list){
+            arr[i++] = tmp.val;
+        }
+
+        return arr;
     }
 }
