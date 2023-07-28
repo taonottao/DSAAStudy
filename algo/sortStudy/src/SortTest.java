@@ -115,4 +115,10 @@ public class SortTest {
         System.out.println(Arrays.toString(arr));
     }
 
+    @Test
+    public void test6(){
+        int[] arr = {1,2,3,4,5,6};
+//        Arrays.copyOf()
+    }
+
 }
