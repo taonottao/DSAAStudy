@@ -2,6 +2,7 @@ package my_sort;
 
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 /**
  * @version 1.0
@@ -69,9 +70,17 @@ public class HeapSort {
     public static void main(String[] args) {
         HeapTest heapTest = new HeapTest();
         int[] arr = {27,15,19,18,28,34,65,49,25,37};
-        heapTest.initHeap(arr);
-        heapTest.createHeap();
-        heapTest.heapSort();
+//        heapTest.initHeap(arr);
+//        heapTest.createHeap();
+//        heapTest.heapSort();
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        for (int i = 0; i < arr.length; i++) {
+            heap.offer(arr[i]);
+        }
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = heap.poll();
+        }
+
         System.out.println("***********");
     }
 }
