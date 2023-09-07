@@ -68,7 +68,7 @@ public class Demo2 {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main3(String[] args) {
         int[] arr = new int[8];
 //        for (int i = 0; i < 8; i++) {
 //            arr[i] = 1;
@@ -80,5 +80,19 @@ public class Demo2 {
             }
         }
         System.out.println();
+    }
+
+}
+
+class A{
+    public static void show() {
+        System.out.println("A");
+    }
+}
+
+class B extends A {
+//    @Override
+    public static void show() {
+        System.out.println("B");
     }
 }
