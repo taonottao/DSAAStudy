@@ -23,7 +23,6 @@ public class Sort1 {
                 }
             }
             swap(arr, i, minIndex);
-
         }
     }
 

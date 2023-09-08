@@ -15,7 +15,7 @@ public class Demo3 {
 //        System.out.println(str.substring(0, i + 1));
 
         String str = "马牌22555r16，固特异22555r16";
-        ArrayList<String> strings = fetchTireSize(str);
+//        ArrayList<String> strings = fetchTireSize(str);
         System.out.println("123，456".contains(","));
         System.out.println(str.replace("，" , " "));
     }
@@ -24,7 +24,7 @@ public class Demo3 {
     // [225, 235, 245, 255],[40, 45, 50, 55, 60],[15, 16, 17, 18, 19],"马牌22555r16，固特异22555r16"
     // [225, 235, 245, 255],[40, 45, 50, 55, 60],[15, 16, 17, 18, 19],"马牌225/55r16 马牌22555r17"
     // int[] tw, int[] ta, int[] tr,
-    public static ArrayList<String> fetchTireSize (String query) {
+    public static ArrayList<String> fetchTireSize (int[] tw, int[] ta, int[] tr, String query) {
         // write code here
         ArrayList<String> list = new ArrayList<>();
         query.replace("，", " ");
@@ -54,7 +54,7 @@ public class Demo3 {
         return list;
     }
 
-    public boolean isTrue(int[] tw, int[] ta, int[] tr, int tww, int taa, int trr) {
+    public static boolean isTrue(int[] tw, int[] ta, int[] tr, int tww, int taa, int trr) {
         int flag1 = 0;
         int flag2 = 0;
         int flag3 = 0;
