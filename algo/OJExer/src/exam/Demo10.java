@@ -1,7 +1,6 @@
 package exam;
 
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class Demo10 {
