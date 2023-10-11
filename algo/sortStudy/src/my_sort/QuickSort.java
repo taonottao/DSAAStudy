@@ -121,6 +121,7 @@ public class QuickSort {
     }
 
     public static void insertSort(int[] arr, int left, int right) {
+
         for (int i = left + 1; i <= right; i++) {
             int tmp = arr[i];
             int j = i - 1;
