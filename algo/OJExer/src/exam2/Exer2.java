@@ -13,7 +13,7 @@ public class Exer2 {
     public String getTypeOfMobilePhoneNumber (String mobilePhoneNumber) {
         // write code here
         List<String> chinaMobile = getChinaMobile();
-
+        return null;
     }
 
     public List<String> getChinaMobile() {
@@ -79,6 +79,7 @@ public class Exer2 {
         ChinaUnicom.add("860156");
         ChinaUnicom.add("860186");
         ChinaUnicom.add("860185");
+        return null;
     }
 
 //    public String mul37 (String str1, String str2) {
