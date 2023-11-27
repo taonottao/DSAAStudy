@@ -7,6 +7,11 @@ package leetcode.simulation;
  * @Date 2023/11/26 10:40
  */
 public class Exer1576 {
+
+    public static void main(String[] args) throws InterruptedException {
+        Object.class.wait();
+    }
+
     public String modifyString(String ss) {
         char[] s = ss.toCharArray();
         int n = s.length;
@@ -23,4 +28,5 @@ public class Exer1576 {
         }
         return String.valueOf(s);
     }
+
 }
